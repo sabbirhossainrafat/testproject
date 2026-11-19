@@ -16,7 +16,6 @@ p{margin:0 0 var(--s2)}ul{list-style:none;margin:0;padding:0}
 :focus-visible{outline:2px solid var(--lavender);outline-offset:4px;border-radius:4px}
 .skip{position:absolute;left:-999px;top:0;background:var(--lavender);color:#14121c;padding:.5rem 1rem;z-index:100}.skip:focus{left:1rem;top:1rem}
 .eyebrow{font-size:.72rem;letter-spacing:.17em;text-transform:uppercase;color:var(--lavender);font-weight:600;margin-bottom:.75rem}
-.accent-dot{color:var(--violet)}
 svg.i{width:1.1em;height:1.1em;fill:none;stroke:currentColor;stroke-width:2.15;stroke-linecap:round;stroke-linejoin:round;flex:none}
 svg.i[class*="brand-"]{fill:currentColor;stroke:none}
 svg.i[class*="brand-"] use{fill:currentColor}
