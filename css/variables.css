@@ -1,0 +1,8 @@
+:root{
+  --bg:#15121c;--surface:#1b1826;--surface-2:#221e30;--border:#373147;
+  --text:#f2eff8;--muted:#aaa4b8;--violet:#8b6fd1;--lavender:#c4b5f0;
+  --font-display:"Manrope",system-ui,sans-serif;--font-body:"DM Sans",system-ui,sans-serif;
+  --s1:.5rem;--s2:1rem;--s3:1.5rem;--s4:2.5rem;--s5:4rem;--s6:7rem;
+  --r-sm:8px;--r-md:16px;--shadow:0 20px 60px rgba(0,0,0,.38);--ease:.2s ease;
+  --container:1120px;--nav-h:64px;
+}

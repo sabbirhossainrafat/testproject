@@ -1,0 +1,124 @@
+/* Shared type scale: display, section, card, body, metadata, and utility roles. */
+:root{
+  --type-display:clamp(2.6rem,6.4vw,5.5rem);
+  --type-about-display:clamp(2.35rem,4.8vw,4rem);
+  --type-section:clamp(2.15rem,4.5vw,3.25rem);
+  --type-subsection:clamp(1.35rem,2.3vw,1.7rem);
+  --type-card-title:clamp(1.2rem,1.8vw,1.5rem);
+  --type-lead:clamp(1.12rem,1.55vw,1.4rem);
+  --type-body:1rem;
+  --type-body-small:.9rem;
+  --type-meta:.8125rem;
+  --type-caption:.75rem;
+  --weight-regular:400;
+  --weight-medium:500;
+  --weight-semibold:600;
+  --weight-bold:700;
+  --line-display:1.04;
+  --line-heading:1.12;
+  --line-body:1.72;
+  --line-compact:1.45;
+}
+
+html{font-family:var(--font-body);font-optical-sizing:auto;font-synthesis:none;font-kerning:normal}
+body{font-family:var(--font-body);font-size:var(--type-body);font-weight:var(--weight-regular);line-height:var(--line-body);letter-spacing:0}
+button,input,select,textarea{font-family:var(--font-body);font-size:inherit;letter-spacing:inherit}
+
+h1,h2,h3,h4,h5,h6{font-family:var(--font-display);font-synthesis:none;font-optical-sizing:auto;text-wrap:balance}
+h1{font-size:var(--type-display);font-weight:var(--weight-bold);line-height:var(--line-display);letter-spacing:-.052em}
+h2{font-size:var(--type-section);font-weight:var(--weight-bold);line-height:var(--line-heading);letter-spacing:-.042em}
+h3{font-size:var(--type-subsection);font-weight:var(--weight-semibold);line-height:1.25;letter-spacing:-.025em}
+h4,h5,h6{font-size:var(--type-body);font-weight:var(--weight-semibold);line-height:1.35;letter-spacing:-.015em}
+p,li,dd{font-family:var(--font-body);font-size:var(--type-body);font-weight:var(--weight-regular);line-height:var(--line-body)}
+
+.hero h1{font-size:var(--type-display);font-weight:var(--weight-bold);line-height:1.02;letter-spacing:-.055em}
+.hero .role{font-size:clamp(1.1rem,1.8vw,1.3rem);font-weight:var(--weight-semibold);line-height:1.4;letter-spacing:-.018em}
+.hero .spec{font-size:var(--type-body-small);font-weight:var(--weight-medium);line-height:1.5;letter-spacing:.015em}
+.hero .intro{font-size:clamp(.98rem,1.25vw,1.06rem);line-height:1.75;letter-spacing:0}
+.hero-stat strong{font-size:clamp(1.25rem,2vw,1.5rem);font-weight:var(--weight-bold);line-height:1.15;font-variant-numeric:tabular-nums}
+.hero-stat span{font-size:var(--type-caption);font-weight:var(--weight-medium);line-height:1.45;letter-spacing:.025em}
+
+.section-heading h2,.github-heading h2,.contact-heading h2{font-size:var(--type-section);font-weight:var(--weight-bold);line-height:var(--line-heading);letter-spacing:-.042em}
+.section-heading .section-note,.github-heading .section-note{font-size:var(--type-body-small);line-height:1.65}
+.eyebrow{font-size:.7rem;font-weight:var(--weight-semibold);line-height:1.4;letter-spacing:.14em}
+.about .about-heading>.eyebrow{font-size:.7rem;font-weight:var(--weight-semibold);line-height:1.4;letter-spacing:.18em}
+.about .about-heading h2{font-size:var(--type-about-display);font-weight:var(--weight-bold);line-height:1;letter-spacing:-.055em}
+.about-signature{font-size:clamp(.98rem,1.5vw,1.1rem);font-weight:var(--weight-medium);line-height:1.55;letter-spacing:.005em}
+.about p#about-lede{font-size:var(--type-lead);font-weight:var(--weight-medium);line-height:1.65;letter-spacing:-.018em}
+.about .about-column p:first-child,.about-column p{color:#c5bfce;font-size:var(--type-body);font-weight:var(--weight-regular);line-height:1.76;letter-spacing:0}
+.about-card-label,.contact-label{font-size:.7rem;font-weight:var(--weight-semibold);line-height:1.45;letter-spacing:.12em}
+.about-card-value{font-size:var(--type-body-small);font-weight:var(--weight-semibold);line-height:1.5;letter-spacing:-.008em}
+.about-copy-button{font-size:.75rem;font-weight:var(--weight-semibold);line-height:1.2;letter-spacing:.005em}
+.about-copy-feedback{font-size:var(--type-caption);line-height:1.4}
+
+.skill-groups h3{font-family:var(--font-body);font-size:.95rem;font-weight:var(--weight-semibold);line-height:1.4;letter-spacing:.005em}
+.skill-groups li{font-size:var(--type-body-small);font-weight:var(--weight-medium);line-height:1.5}
+.project-card-body h3,.project-title-row h3{font-size:var(--type-card-title);font-weight:var(--weight-bold);line-height:1.24;letter-spacing:-.032em}
+.project-card-body .eyebrow{font-size:.68rem;font-weight:var(--weight-semibold);line-height:1.4;letter-spacing:.12em}
+.project-summary{font-size:var(--type-body-small);font-weight:var(--weight-regular);line-height:1.65;letter-spacing:0}
+.project-focus li{font-size:var(--type-caption);font-weight:var(--weight-medium);line-height:1.4;letter-spacing:.005em}
+.project-status-badge{font-size:.7rem;font-weight:var(--weight-semibold);line-height:1.35;letter-spacing:.015em}
+.project-meta{font-size:var(--type-meta);font-weight:var(--weight-medium);line-height:var(--line-compact);font-variant-numeric:tabular-nums}
+.project-actions .btn,.project-dialog-actions .btn{font-size:.86rem;font-weight:var(--weight-semibold);line-height:1.3;letter-spacing:0}
+.case-study-trigger{font-size:.875rem;font-weight:var(--weight-semibold);line-height:1.4;letter-spacing:0}
+.project-dialog-header h2{font-size:clamp(2rem,4.5vw,3rem);font-weight:var(--weight-bold);line-height:1.08;letter-spacing:-.04em}
+.case-study-summary{font-size:var(--type-body);line-height:1.7}
+.case-study-section h3{font-family:var(--font-body);font-size:.95rem;font-weight:var(--weight-semibold);line-height:1.4;letter-spacing:.005em}
+.case-study-section p{font-size:var(--type-body-small);line-height:1.65}
+
+.github-heading .eyebrow,.contact-heading .eyebrow{font-size:.7rem;letter-spacing:.15em}
+.github-panel h3,.contribution-heading h3{font-size:var(--type-subsection);font-weight:var(--weight-semibold);line-height:1.3;letter-spacing:-.025em}
+.gh-stat-value{font-size:clamp(1.25rem,2.4vw,1.75rem);font-weight:var(--weight-bold);line-height:1.15;font-variant-numeric:tabular-nums}
+.gh-stat-label,.repo-visibility{font-size:var(--type-caption);font-weight:var(--weight-medium);line-height:var(--line-compact)}
+.gh-profile-name{font-family:var(--font-display);font-size:1rem;font-weight:var(--weight-bold);line-height:1.4;letter-spacing:-.015em}
+.gh-profile-bio{font-size:.85rem;font-weight:var(--weight-regular);line-height:1.55}
+.text-link{font-size:var(--type-body-small);font-weight:var(--weight-semibold);line-height:1.4}
+.github-status,.projects-status{font-size:var(--type-caption);line-height:1.5}
+
+.info-card h3,.contact-profile h3{font-size:var(--type-subsection);font-weight:var(--weight-bold);line-height:1.28;letter-spacing:-.025em}
+.meta dt,.contact-details li,.contact-role{font-size:var(--type-body-small);line-height:1.55}
+.meta dd{font-size:var(--type-body);line-height:1.6}
+.language-list li{font-size:var(--type-body-small);line-height:1.6}
+.privacy-note,.err{font-size:var(--type-caption);line-height:1.5}
+.contact-form label,.form-grid label{font-size:var(--type-body-small);font-weight:var(--weight-medium);line-height:1.4}
+.contact-form input,.contact-form textarea{font-size:var(--type-body);line-height:1.5}
+#form-status{font-size:var(--type-body-small);line-height:1.5}
+.footer-name{font-size:1rem;font-weight:var(--weight-bold);line-height:1.4;letter-spacing:-.01em}
+.footer-main .muted,#copy{font-size:var(--type-body-small);line-height:1.55}
+.btn,.text-button{font-size:var(--type-body-small);font-weight:var(--weight-semibold);line-height:1.35;letter-spacing:0}
+.brand-name{font-size:1rem;font-weight:var(--weight-bold);line-height:1.25;letter-spacing:-.025em}
+.nav nav a,.nav .nav-dropdown-trigger{font-size:.8125rem;font-weight:var(--weight-semibold);line-height:1.35;letter-spacing:.005em}
+.nav nav .submenu a{font-size:.85rem;font-weight:var(--weight-medium);line-height:1.45}
+.menu-btn{font-size:var(--type-body-small);line-height:1}
+
+.workflow-heading h3{font-size:var(--type-subsection);font-weight:var(--weight-semibold);line-height:1.3}
+.workflow-heading>p:last-child{font-size:var(--type-body-small);line-height:1.6}
+.workflow-disclaimer,.catalog-status{font-size:var(--type-caption);line-height:1.5}
+.chat-speaker{font-size:var(--type-caption);font-weight:var(--weight-semibold);line-height:1.4;letter-spacing:.025em}
+.chat-message p{font-size:.85rem;line-height:1.6}
+.prompt-chip{font-size:.78rem;font-weight:var(--weight-medium);line-height:1.35}
+.chat-composer input,.catalog-controls input,.catalog-controls select,.workflow-panel>input{font-size:.875rem;line-height:1.45}
+.stream-art span{font-size:.7rem;font-weight:var(--weight-semibold);line-height:1.3;letter-spacing:.07em}
+.stream-item-copy h4,.book-copy h4{font-size:.95rem;font-weight:var(--weight-bold);line-height:1.35;letter-spacing:-.015em}
+.stream-item-copy>p:not(.eyebrow),.book-copy p{font-size:.8rem;line-height:1.5}
+.watchlist-toggle,.book-action{font-size:.78rem;font-weight:var(--weight-semibold);line-height:1.35}
+.book-cover span{font-size:.7rem;line-height:1.2}
+.book-state{font-size:.75rem;line-height:1.35}
+.dialog-close{font-size:1.4rem;line-height:1}
+
+@media (max-width:760px){
+  :root{--type-display:clamp(2.65rem,9vw,4.1rem);--type-about-display:clamp(2.35rem,7vw,3.25rem);--type-section:clamp(2rem,6.5vw,2.75rem);--type-lead:clamp(1.08rem,2.6vw,1.25rem)}
+  .hero .intro{font-size:1rem;line-height:1.7}
+  .about .about-column p:first-child,.about-column p{font-size:.98rem;line-height:1.72}
+  .project-summary{font-size:.94rem}
+  .gh-stat-label,.project-meta{font-size:.75rem}
+}
+@media (max-width:480px){
+  :root{--type-display:clamp(2.55rem,11.5vw,3.25rem);--type-about-display:clamp(2.2rem,8vw,2.8rem);--type-section:clamp(1.95rem,8.5vw,2.35rem);--type-subsection:1.3rem;--type-card-title:1.3rem;--type-lead:1.08rem}
+  .hero .spec{font-size:.875rem}
+  .section-note{font-size:.9rem;line-height:1.6}
+  .project-focus li{font-size:.75rem}
+  .project-actions .btn,.project-dialog-actions .btn{font-size:.84rem}
+  .about-card-value{font-size:.93rem}
+  .contact-form label,.form-grid label{font-size:.875rem}
+}

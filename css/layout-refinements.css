@@ -1,0 +1,142 @@
+/* Shared alignment rules: keep each section's own editorial layout inside a centered frame. */
+main > section:not(.hero) {
+  margin-inline: auto;
+}
+
+main > section.wrap {
+  width: min(100% - 3rem, var(--container));
+}
+
+.section-heading,
+.github-heading,
+.contact-heading {
+  width: 100%;
+  margin-inline: auto;
+}
+
+.section-heading h2,
+.github-heading h2,
+.contact-heading h2 {
+  max-width: 24ch;
+  margin-inline: auto;
+  text-wrap: balance;
+}
+
+.expertise-layout,
+.cards,
+.project-filters,
+.projects-status,
+.projects-grid,
+.credential-grid,
+.beyond-layout,
+.contact-layout,
+.github-panel,
+.activity-trend-panel {
+  width: 100%;
+  max-width: 1120px;
+  margin-inline: auto;
+}
+
+.cards,
+.projects-grid,
+.credential-grid,
+.skill-groups,
+.personal-facts,
+.beyond-layout,
+.activity-trend-grid {
+  justify-items: stretch;
+  align-items: stretch;
+}
+
+.projects-status {
+  text-align: center;
+}
+
+.hero > div:first-child {
+  width: 100%;
+  max-width: 560px;
+  justify-self: center;
+  text-align: center;
+}
+
+.hero h1 {
+  margin-inline: auto;
+  text-wrap: balance;
+}
+
+.hero .intro {
+  margin-inline: auto;
+  text-wrap: pretty;
+}
+
+.hero-kicker,
+.hero .actions,
+.hero .socials {
+  justify-content: center;
+}
+
+.hero-stats {
+  width: min(100%, 600px);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-inline: auto;
+  text-align: center;
+}
+
+.contact-layout > *,
+.contact-form-column,
+.contact-form {
+  min-width: 0;
+}
+
+@media (max-width: 1050px) {
+  main > section.wrap {
+    width: min(100% - 2.5rem, var(--container));
+  }
+}
+
+@media (max-width: 760px) {
+  main > section.wrap {
+    width: min(100% - 2rem, var(--container));
+  }
+
+  .hero > div:first-child {
+    max-width: 620px;
+  }
+
+  .hero-stats {
+    max-width: 480px;
+  }
+}
+
+@media (max-width: 480px) {
+  main > section.wrap {
+    width: min(100% - 1.5rem, var(--container));
+  }
+
+  .hero-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: 340px;
+  }
+
+  .beyond-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .interest-explorer,
+  .language-panel,
+  .hobby-panel,
+  .ambition-card {
+    grid-column: 1;
+    grid-row: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero > *,
+  .project-card,
+  .about-card,
+  .more-panel {
+    animation: none !important;
+    transition: none !important;
+  }
+}
