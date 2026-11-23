@@ -38,6 +38,6 @@ export const SITE = {
     ["GitHub", "https://github.com/sabbirhossainrafat", "github"], ["LinkedIn", "https://www.linkedin.com/in/sabbirhossainrafat/", "linkedin"],
     ["Facebook", "https://www.facebook.com/sabbir.rafa7", "facebook"], ["X", "https://x.com/sabbir_rafat", "x"],
     ["Instagram", "https://instagram.com/sabbir_rafat", "instagram"], ["Telegram", "https://t.me/sabbir_rafat", "telegram"],
-    ["Reddit", "https://www.reddit.com/", "reddit"]
+    ["Reddit", "https://www.reddit.com/user/sabbir_rafat", "reddit"]
   ]
 };
