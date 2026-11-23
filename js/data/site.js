@@ -8,7 +8,7 @@ export const SITE = {
   intro: "I study software engineering and build toward intelligent, secure systems, with a focus on AI, machine learning and cybersecurity.",
   location: "Uttara, Dhaka, Bangladesh",
   photo: "assets/images/profile/profile.png",
-  cv: "https://drive.google.com/file/d/18wCl-bcmXfwJ-c-A5wCOX6FMUu-DyRNo/view?usp=sharing",
+  cv: "./Sabbir_Hossain_Rafat_Academic_CV.pdf",
   email: "sabbirhossainrafat@gmail.com",
   whatsapp: "+8801755772612",
   githubUser: "sabbirhossainrafat",
