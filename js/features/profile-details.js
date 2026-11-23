@@ -81,7 +81,7 @@ function initBeyondReveal() {
 
 function renderPersonalAssets() {
   const link = externalLink(SITE.cv, "", "btn primary");
-  link.append(el("span", { text: "View CV / résumé" }), icon("external"));
+  link.append(el("span", { text: "View CV" }), icon("external"));
   put("assets-body", link);
 }
 

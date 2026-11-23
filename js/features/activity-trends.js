@@ -26,15 +26,17 @@ function renderSummary(record, cached = false) {
 }
 
 async function fetchContributions() {
-  const response = await fetch(`/api/github-contributions?username=${encodeURIComponent(SITE.githubUser)}`, {
+    const response = await fetch("https://github-contributions-api.jogruber.de/v4/sabbirhossainrafat?y=last", {
     headers: { Accept: "application/json" }
   });
-  const record = await response.json().catch(() => ({}));
-  if (!response.ok) throw new Error(record.error || "contribution_data_unavailable");
-  if (record.login?.toLowerCase() !== SITE.githubUser.toLowerCase() || !Array.isArray(record.days)) {
-    throw new Error("invalid_contribution_data");
-  }
-  return record;
+  if (!response.ok) throw new Error("contribution_data_unavailable");
+  const data = await response.json();
+  if (!Array.isArray(data.contributions)) throw new Error("invalid_contribution_data");
+  
+  return {
+    login: SITE.githubUser,
+    days: data.contributions.map(item => ({ date: item.date, count: item.count }))
+  };
 }
 
 export async function initActivityTrends() {
@@ -52,12 +54,7 @@ export async function initActivityTrends() {
       $("activity-trend-source").textContent = "GitHub refresh unavailable · using the last verified snapshot";
       return;
     }
-    const status = error.message === "github_token_not_configured"
-      ? "Add a public-only GITHUB_TOKEN to the Vercel environment to enable verified contribution trends."
-      : error.message === "public_only_token_required"
-        ? "Use a GitHub token without the read:user permission so this summary contains public contributions only."
-        : "Verified contribution trends are temporarily unavailable. Visit the GitHub profile for current activity.";
-    put("activity-trend-cards", el("p", { class: "activity-trend-empty", text: status }));
+    put("activity-trend-cards", el("p", { class: "activity-trend-empty", text: "Verified contribution trends are temporarily unavailable. Visit the GitHub profile for current activity." }));
     $("activity-trend-source").textContent = "Daily totals come from GitHub's contribution calendar.";
   }
 }
