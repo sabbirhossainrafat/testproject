@@ -75,6 +75,24 @@ function dateKey(date) {
   return date.toISOString().slice(0, 10);
 }
 
+// Accepts only the contribution-day shape used across the portfolio:
+// { date: "YYYY-MM-DD", contributionCount: non-negative number }.
+// Any other shape is dropped instead of being silently counted as zero.
+export function normalizeContributionDays(days) {
+  if (!Array.isArray(days)) return [];
+  const byDate = new Map();
+  for (const entry of days) {
+    const date = entry?.date;
+    const count = entry?.contributionCount;
+    if (typeof date !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(date)) continue;
+    const parsed = new Date(`${date}T00:00:00Z`);
+    if (Number.isNaN(parsed.getTime()) || dateKey(parsed) !== date) continue;
+    if (!Number.isFinite(count) || count < 0) continue;
+    byDate.set(date, Math.floor(count));
+  }
+  return [...byDate].map(([date, contributionCount]) => ({ date, contributionCount }));
+}
+
 export function summarizeContributions(days, now = new Date()) {
   const counts = new Map();
   for (const entry of days || []) {

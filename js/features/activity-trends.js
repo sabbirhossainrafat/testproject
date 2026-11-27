@@ -1,14 +1,17 @@
 import { SITE } from "../data/site.js";
 import { $, el, put } from "../lib/dom.js";
 import { icon } from "../lib/icons.js?v=20261119-2";
-import { summarizeContributions } from "../lib/algorithms.js";
+import { normalizeContributionDays, summarizeContributions } from "../lib/algorithms.js";
 
-const CACHE_KEY = "portfolio.github.public-contributions.v1";
+// v2: earlier snapshots stored an incompatible day shape and would render as zeros.
+const CACHE_KEY = "portfolio.github.public-contributions.v2";
 const CACHE_TTL = 60 * 60 * 1000;
 
 function readCache() {
-  try { return JSON.parse(localStorage.getItem(CACHE_KEY) || "null"); }
-  catch { return null; }
+  try {
+    const cached = JSON.parse(localStorage.getItem(CACHE_KEY) || "null");
+    return normalizeContributionDays(cached?.record?.days).length ? cached : null;
+  } catch { return null; }
 }
 
 function renderSummary(record, cached = false) {
@@ -32,11 +35,11 @@ async function fetchContributions() {
   if (!response.ok) throw new Error("contribution_data_unavailable");
   const data = await response.json();
   if (!Array.isArray(data.contributions)) throw new Error("invalid_contribution_data");
-  
-  return {
-    login: SITE.githubUser,
-    days: data.contributions.map(item => ({ date: item.date, count: item.count }))
-  };
+  const days = normalizeContributionDays(
+    data.contributions.map((item) => ({ date: item.date, contributionCount: item.count }))
+  );
+  if (!days.length) throw new Error("invalid_contribution_data");
+  return { login: SITE.githubUser, days };
 }
 
 export async function initActivityTrends() {
