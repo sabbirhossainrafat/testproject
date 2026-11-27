@@ -2,19 +2,13 @@ import { SITE } from "../data/site.js";
 import { $, el, put } from "../lib/dom.js";
 import { icon } from "../lib/icons.js?v=20261119-2";
 import { fetchPublicRepositories, getCachedPublicRepositories } from "../lib/github-api.js";
+import { buildGitHubStatItems } from "../lib/algorithms.js";
 
 const PROFILE_CACHE = "portfolio.github.profile.v1";
 const PROFILE_TTL = 60 * 60 * 1000;
 
 function buildStats(user, repos) {
-  const validRepos = Array.isArray(repos) ? repos : null;
-  const repoCount = validRepos ? validRepos.length : Number.isFinite(Number(user?.public_repos)) ? Number(user.public_repos) : null;
-  const stars = validRepos ? validRepos.reduce((total, repo) => total + (Number(repo.stargazers_count) || 0), 0) : null;
-  const values = [
-    ...(repoCount != null ? [["repositories", String(repoCount), "Public repositories"]] : []),
-    ...(user?.followers != null && Number.isFinite(Number(user.followers)) ? [["followers", String(Number(user.followers)), "Followers"]] : []),
-    ...(stars != null ? [["stars", String(stars), "Stars across public repos"]] : [])
-  ];
+  const values = buildGitHubStatItems(user, repos);
   if (!values.length) {
     put("gh-stats", el("p", { class: "muted", text: "Verified GitHub metrics are temporarily unavailable." }));
     return;
@@ -50,7 +44,7 @@ function applyData(user, repos, fetchedAt, cached = false) {
   buildStats(user, repos);
   const refreshed = fetchedAt ? new Date(fetchedAt).toLocaleTimeString([], { hour: "numeric", minute: "2-digit" }) : null;
   const available = [user ? "profile metrics" : "", Array.isArray(repos) ? "repository metrics" : ""].filter(Boolean).join(" and ");
-  $("gh-status").textContent = `${cached ? "Saved GitHub snapshot" : "Live GitHub data"}${available ? ` · ${available}` : ""}${refreshed ? ` · refreshed ${refreshed}` : ""}${!Array.isArray(repos) ? " · star total unavailable until repositories can be refreshed" : ""}`;
+  $("gh-status").textContent = `${cached ? "Saved GitHub snapshot" : "Live GitHub data"}${available ? ` · ${available}` : ""}${refreshed ? ` · refreshed ${refreshed}` : ""}${!Array.isArray(repos) ? " · repository and star totals unavailable until repositories can be refreshed" : ""}`;
 }
 
 async function fetchProfile() {
@@ -63,7 +57,7 @@ async function fetchProfile() {
     });
     if (!response.ok) throw new Error(`GitHub API returned ${response.status}`);
     const raw = await response.json();
-    const data = { user: { login: raw.login, name: raw.name, bio: raw.bio, avatar_url: raw.avatar_url, html_url: raw.html_url, public_repos: raw.public_repos, followers: raw.followers }, fetchedAt: Date.now() };
+    const data = { user: { login: raw.login, name: raw.name, bio: raw.bio, avatar_url: raw.avatar_url, html_url: raw.html_url, followers: raw.followers }, fetchedAt: Date.now() };
     try { localStorage.setItem(PROFILE_CACHE, JSON.stringify(data)); } catch { /* cache optional */ }
     return data;
   } catch (error) {

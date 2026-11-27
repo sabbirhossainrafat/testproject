@@ -93,6 +93,28 @@ export function normalizeContributionDays(days) {
   return [...byDate].map(([date, contributionCount]) => ({ date, contributionCount }));
 }
 
+// Repository totals count original repositories only; forks are excluded everywhere.
+// Returns null when the repository list is unavailable, so callers never guess a total.
+export function summarizeOriginalRepositories(repos) {
+  if (!Array.isArray(repos)) return null;
+  const originals = repos.filter((repo) => repo && repo.fork !== true);
+  const stars = originals.reduce((total, repo) => total + (Number(repo.stargazers_count) || 0), 0);
+  return { count: originals.length, stars };
+}
+
+// Items for the GitHub stat cards as [icon, value, label]. Repository and star totals
+// come only from the repository list, never from the profile's public_repos field,
+// because that field includes forks.
+export function buildGitHubStatItems(user, repos) {
+  const originals = summarizeOriginalRepositories(repos);
+  const followers = Number(user?.followers);
+  return [
+    ...(originals ? [["repositories", String(originals.count), "Original repositories"]] : []),
+    ...(user?.followers != null && Number.isFinite(followers) ? [["followers", String(followers), "Followers"]] : []),
+    ...(originals ? [["stars", String(originals.stars), "Stars across original repos"]] : [])
+  ];
+}
+
 export function summarizeContributions(days, now = new Date()) {
   const counts = new Map();
   for (const entry of days || []) {
