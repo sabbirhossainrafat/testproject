@@ -6,6 +6,9 @@ import { normalizeContributionDays, summarizeContributions } from "../lib/algori
 // v2: earlier snapshots stored an incompatible day shape and would render as zeros.
 const CACHE_KEY = "portfolio.github.public-contributions.v2";
 const CACHE_TTL = 60 * 60 * 1000;
+const REQUEST_TIMEOUT = 15000;
+// Same-origin Vercel Serverless Function. It holds the GitHub token and serves one account.
+const CONTRIBUTIONS_ENDPOINT = "/api/github-contributions";
 
 function readCache() {
   try {
@@ -29,17 +32,21 @@ function renderSummary(record, cached = false) {
 }
 
 async function fetchContributions() {
-    const response = await fetch("https://github-contributions-api.jogruber.de/v4/sabbirhossainrafat?y=last", {
-    headers: { Accept: "application/json" }
-  });
-  if (!response.ok) throw new Error("contribution_data_unavailable");
-  const data = await response.json();
-  if (!Array.isArray(data.contributions)) throw new Error("invalid_contribution_data");
-  const days = normalizeContributionDays(
-    data.contributions.map((item) => ({ date: item.date, contributionCount: item.count }))
-  );
-  if (!days.length) throw new Error("invalid_contribution_data");
-  return { login: SITE.githubUser, days };
+  const controller = new AbortController();
+  const timeout = window.setTimeout(() => controller.abort(), REQUEST_TIMEOUT);
+  try {
+    const response = await fetch(CONTRIBUTIONS_ENDPOINT, {
+      headers: { Accept: "application/json" },
+      signal: controller.signal
+    });
+    if (!response.ok) throw new Error("contribution_data_unavailable");
+    const data = await response.json();
+    const days = normalizeContributionDays(data?.days);
+    if (!days.length) throw new Error("invalid_contribution_data");
+    return { login: SITE.githubUser, days };
+  } finally {
+    window.clearTimeout(timeout);
+  }
 }
 
 export async function initActivityTrends() {
