@@ -103,7 +103,10 @@ export function initNavigation() {
   });
 
   document.addEventListener("click", (event) => {
-    if (!nav.contains(event.target)) {
+    // composedPath() is fixed when the event is dispatched. event.target cannot be used
+    // here: the menu button replaces its own icon while handling the click, so the
+    // target is already detached from the page by the time the event reaches document.
+    if (!event.composedPath().includes(nav)) {
       closeDropdowns();
       if (menu.classList.contains("open")) closeMobileMenu();
     }
