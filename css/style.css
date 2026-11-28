@@ -175,3 +175,9 @@ header.nav nav a[aria-current=location]{color:#e7ddff;background:rgba(139,111,20
 @media (max-width:760px){.section-heading{align-items:center}.gh-stats{grid-template-columns:repeat(3,minmax(0,1fr))}.contact-submit-row{align-items:flex-start}}
 @media (max-width:480px){.section-heading{align-items:center}.gh-stats{grid-template-columns:1fr}.contact-submit-row{flex-direction:column}.contact-submit-row .contact-actions{width:100%}.contact-actions .btn{flex:1}}
 
+/* Keyboard focus ring for text fields. The base input rule removes the default outline. */
+input:focus-visible,textarea:focus-visible{outline:2px solid var(--lavender);outline-offset:2px}
+/* Larger hit area for small text controls without changing layout (WCAG 2.2 AA 2.5.8; roughly 44px on touch screens). */
+.case-study-trigger,.text-link,.journey-note summary{position:relative}
+.case-study-trigger::after,.text-link::after,.journey-note summary::after{content:"";position:absolute;inset:-.45rem 0}
+@media (pointer:coarse){.case-study-trigger::after,.text-link::after,.journey-note summary::after{inset:-.85rem 0}}
