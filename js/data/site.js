@@ -33,7 +33,14 @@ export const SITE = {
   ],
   languages: [["Bengali", "Native"], ["Hindi", "Fluent"], ["Urdu", "Advanced"], ["Spanish", "Advanced"], ["English", "Fluent"]],
   interests: ["Artificial Intelligence", "Machine Learning", "Cybersecurity", "Software Development", "Intelligent AI Assistants", "Visual Storytelling", "Cinematic Aesthetics", "Creative Writing", "Human Behavior and Perception", "Building Original and Meaningful Technology"],
+  // Every entry of "interests" must appear in exactly one group (checked by tests/site-data.test.js).
+  interestGroups: [
+    { id: "ai", label: "AI & Intelligent Systems", interests: ["Artificial Intelligence", "Machine Learning", "Intelligent AI Assistants"] },
+    { id: "security", label: "Technology & Security", interests: ["Cybersecurity", "Software Development", "Building Original and Meaningful Technology"] },
+    { id: "creative", label: "Creative Thinking", interests: ["Visual Storytelling", "Cinematic Aesthetics", "Creative Writing", "Human Behavior and Perception"] }
+  ],
   hobbies: ["Reading novels and books", "Playing video games"],
+  ambition: "Become an AI Security Specialist and build intelligent systems such as Lumex.",
   social: [
     ["GitHub", "https://github.com/sabbirhossainrafat", "github"], ["LinkedIn", "https://www.linkedin.com/in/sabbirhossainrafat/", "linkedin"],
     ["Facebook", "https://www.facebook.com/sabbir.rafa7", "facebook"], ["X", "https://x.com/sabbir_rafat", "x"],

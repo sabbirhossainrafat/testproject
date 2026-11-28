@@ -6,11 +6,7 @@ function renderPersonalInterests() {
   put("lang-body", ...SITE.languages.map(([language, level]) =>
     el("li", {}, el("span", { class: "language-name", text: language }), el("span", { class: "language-level", text: level }))));
 
-  const categories = [
-    { id: "ai", label: "AI & Intelligent Systems", interests: ["Artificial Intelligence", "Machine Learning", "Intelligent AI Assistants"] },
-    { id: "security", label: "Technology & Security", interests: ["Cybersecurity", "Software Development", "Building Original and Meaningful Technology"] },
-    { id: "creative", label: "Creative Thinking", interests: ["Visual Storytelling", "Cinematic Aesthetics", "Creative Writing", "Human Behavior and Perception"] }
-  ];
+  const categories = SITE.interestGroups;
   const tabs = $("interest-tabs");
   const panel = $("int-body");
   let categoryTimer = 0;
@@ -57,7 +53,7 @@ function renderPersonalInterests() {
   put("hob-body", ...SITE.hobbies.map((hobby) => el("article", { class: "hobby-item" },
     el("span", { class: "hobby-icon", "aria-hidden": "true" }, icon(hobbyIcons[hobby] || "activity")),
     el("span", { text: hobby }))));
-  $("ambition-body").textContent = "Become an AI Security Specialist and build intelligent systems such as Lumex.";
+  $("ambition-body").textContent = SITE.ambition;
   initBeyondReveal();
 }
 
