@@ -2,6 +2,7 @@ import { SITE } from "../data/site.js";
 import { $, el, put } from "../lib/dom.js";
 import { icon } from "../lib/icons.js?v=20261119-2";
 import { normalizeContributionDays, summarizeContributions } from "../lib/algorithms.js";
+import { readCachedJson, writeCachedJson } from "../lib/cache.js";
 
 // v2: earlier snapshots stored an incompatible day shape and would render as zeros.
 const CACHE_KEY = "portfolio.github.public-contributions.v2";
@@ -11,10 +12,8 @@ const REQUEST_TIMEOUT = 15000;
 const CONTRIBUTIONS_ENDPOINT = "/api/github-contributions";
 
 function readCache() {
-  try {
-    const cached = JSON.parse(localStorage.getItem(CACHE_KEY) || "null");
-    return normalizeContributionDays(cached?.record?.days).length ? cached : null;
-  } catch { return null; }
+  const cached = readCachedJson(CACHE_KEY);
+  return normalizeContributionDays(cached?.record?.days).length ? cached : null;
 }
 
 function renderSummary(record, cached = false) {
@@ -55,8 +54,7 @@ export async function initActivityTrends() {
   if (current) renderSummary(current, true);
   try {
     const record = await fetchContributions();
-    try { localStorage.setItem(CACHE_KEY, JSON.stringify({ savedAt: Date.now(), record })); }
-    catch { /* browser storage is optional */ }
+    writeCachedJson(CACHE_KEY, { savedAt: Date.now(), record });
     renderSummary(record);
   } catch (error) {
     if (cached?.record) {

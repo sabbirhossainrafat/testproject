@@ -3,6 +3,7 @@ import { $, el, put } from "../lib/dom.js";
 import { icon } from "../lib/icons.js?v=20261119-2";
 import { fetchPublicRepositories, getCachedPublicRepositories } from "../lib/github-api.js";
 import { buildGitHubStatItems } from "../lib/algorithms.js";
+import { readCachedJson, writeCachedJson } from "../lib/cache.js";
 
 const PROFILE_CACHE = "portfolio.github.profile.v1";
 const PROFILE_TTL = 60 * 60 * 1000;
@@ -48,8 +49,7 @@ function applyData(user, repos, fetchedAt, cached = false) {
 }
 
 async function fetchProfile() {
-  let cached;
-  try { cached = JSON.parse(localStorage.getItem(PROFILE_CACHE) || "null"); } catch { /* storage optional */ }
+  const cached = readCachedJson(PROFILE_CACHE);
   if (cached?.user && Date.now() - cached.fetchedAt < PROFILE_TTL) return { ...cached, cached: true };
   try {
     const response = await fetch(`https://api.github.com/users/${encodeURIComponent(SITE.githubUser)}`, {
@@ -58,7 +58,7 @@ async function fetchProfile() {
     if (!response.ok) throw new Error(`GitHub API returned ${response.status}`);
     const raw = await response.json();
     const data = { user: { login: raw.login, name: raw.name, bio: raw.bio, avatar_url: raw.avatar_url, html_url: raw.html_url, followers: raw.followers }, fetchedAt: Date.now() };
-    try { localStorage.setItem(PROFILE_CACHE, JSON.stringify(data)); } catch { /* cache optional */ }
+    writeCachedJson(PROFILE_CACHE, data);
     return data;
   } catch (error) {
     if (cached?.user) return { ...cached, cached: true };

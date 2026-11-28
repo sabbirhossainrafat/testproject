@@ -1,4 +1,5 @@
 import { SITE } from "../data/site.js";
+import { readCachedJson, writeCachedJson } from "./cache.js";
 
 const CACHE_KEY = "portfolio.github.public-repositories.v1";
 const CACHE_TTL = 30 * 60 * 1000;
@@ -6,11 +7,8 @@ const API_ROOT = "https://api.github.com";
 let requestPromise;
 
 function readCache() {
-  try {
-    const record = JSON.parse(localStorage.getItem(CACHE_KEY) || "null");
-    if (Array.isArray(record?.repos)) return record;
-  } catch { /* storage can be unavailable or malformed */ }
-  return null;
+  const record = readCachedJson(CACHE_KEY);
+  return Array.isArray(record?.repos) ? record : null;
 }
 
 export function getCachedPublicRepositories() {
@@ -70,7 +68,7 @@ async function fetchAllRepositories() {
     }
     repos.sort((a, b) => new Date(b.updated_at || 0) - new Date(a.updated_at || 0));
     const record = { repos, fetchedAt: Date.now(), source: "api" };
-    try { localStorage.setItem(CACHE_KEY, JSON.stringify(record)); } catch { /* caching is optional */ }
+    writeCachedJson(CACHE_KEY, record);
     return record;
   } finally {
     window.clearTimeout(timeout);
