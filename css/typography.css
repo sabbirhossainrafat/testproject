@@ -43,13 +43,10 @@ p,li,dd{font-family:var(--font-body);font-size:var(--type-body);font-weight:var(
 .eyebrow{font-size:.7rem;font-weight:var(--weight-semibold);line-height:1.4;letter-spacing:.14em}
 .about .about-heading>.eyebrow{font-size:.7rem;font-weight:var(--weight-semibold);line-height:1.4;letter-spacing:.18em}
 .about .about-heading h2{font-size:var(--type-about-display);font-weight:var(--weight-bold);line-height:1;letter-spacing:-.055em}
-.about-signature{font-size:clamp(.98rem,1.5vw,1.1rem);font-weight:var(--weight-medium);line-height:1.55;letter-spacing:.005em}
 .about p#about-lede{font-size:var(--type-lead);font-weight:var(--weight-medium);line-height:1.65;letter-spacing:-.018em}
 .about .about-column p:first-child,.about-column p{color:#c5bfce;font-size:var(--type-body);font-weight:var(--weight-regular);line-height:1.76;letter-spacing:0}
 .about-card-label,.contact-label{font-size:.7rem;font-weight:var(--weight-semibold);line-height:1.45;letter-spacing:.12em}
 .about-card-value{font-size:var(--type-body-small);font-weight:var(--weight-semibold);line-height:1.5;letter-spacing:-.008em}
-.about-copy-button{font-size:.75rem;font-weight:var(--weight-semibold);line-height:1.2;letter-spacing:.005em}
-.about-copy-feedback{font-size:var(--type-caption);line-height:1.4}
 
 .skill-groups h3{font-family:var(--font-body);font-size:.95rem;font-weight:var(--weight-semibold);line-height:1.4;letter-spacing:.005em}
 .skill-groups li{font-size:var(--type-body-small);font-weight:var(--weight-medium);line-height:1.5}

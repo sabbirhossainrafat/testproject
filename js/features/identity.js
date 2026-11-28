@@ -68,7 +68,7 @@ export function renderIdentity() {
   document.querySelector(".portrait").append(portrait);
 
   renderSocialLinks("h-social");
-  renderSocialLinks("f-social", true);
+  renderSocialLinks("f-social");
 
   const stats = [];
   const skillGroups = Object.values(SITE.skills || {});

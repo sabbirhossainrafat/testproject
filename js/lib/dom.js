@@ -13,6 +13,3 @@ export const put = (id, ...nodes) => $(id).replaceChildren(...nodes);
 export function externalLink(href, label, className = "") {
   return el("a", { href, target: "_blank", rel: "noopener noreferrer", class: className }, label);
 }
-export function rows(values) {
-  return el("dl", { class: "meta" }, ...values.flatMap(([term, value]) => [el("dt", { text: term }), el("dd", { text: value })]));
-}

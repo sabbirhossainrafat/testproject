@@ -7,7 +7,6 @@
 .about-heading>.eyebrow::before,.about-heading>.eyebrow::after{content:"";width:26px;height:1px;background:linear-gradient(90deg,transparent,rgba(196,181,240,.55))}
 .about-heading>.eyebrow::after{transform:rotate(180deg)}
 .about-heading h2{max-width:none;font-size:clamp(2.35rem,4.8vw,4rem);line-height:1.04;letter-spacing:-.05em}
-.about-signature{margin:.95rem 0 0;color:#b8b0c5;font-size:clamp(1rem,1.6vw,1.15rem);letter-spacing:.015em}
 .about-content{width:min(100%,940px);margin-inline:auto}
 .about-lede{max-width:68ch;margin:0 auto;color:#eeeaf5;font:500 clamp(1.12rem,1.55vw,1.4rem)/1.68 var(--font-display);letter-spacing:-.018em;text-align:left}
 .about-columns{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(1.5rem,4vw,3.4rem);margin-top:clamp(2.2rem,5vw,3.5rem);padding-top:clamp(1.5rem,3vw,2.2rem);border-top:1px solid rgba(196,181,240,.15)}
@@ -28,11 +27,6 @@
 .about-card-value{display:block;min-width:0;color:#f0edf5;font-size:.91rem;font-weight:600;line-height:1.55;overflow-wrap:anywhere}
 a.about-card-value{text-decoration:none;transition:color .18s ease}
 a.about-card-value:hover{color:var(--lavender);text-decoration:underline;text-underline-offset:3px}
-.about-card-tools{position:relative;z-index:1;display:flex;align-items:center;gap:.55rem;margin-top:auto}
-.about-copy-button{display:inline-flex;align-items:center;gap:.38rem;min-height:32px;padding:.35rem .58rem;border:1px solid rgba(196,181,240,.16);border-radius:7px;background:rgba(255,255,255,.025);color:#c9c1d6;font:600 .69rem/1 var(--font-body);cursor:pointer;transition:background .18s ease,border-color .18s ease,color .18s ease}
-.about-copy-button:hover,.about-copy-button:focus-visible{border-color:rgba(196,181,240,.42);background:rgba(139,111,209,.1);color:var(--text)}
-.about-copy-button .i{width:.85rem;height:.85rem}
-.about-copy-feedback{min-height:1em;color:#d8c9ff;font-size:.68rem;line-height:1.35}
 .about-reveal{opacity:0;transform:translateY(15px);transition:opacity .65s ease var(--reveal-delay,0ms),transform .65s cubic-bezier(.2,.7,.2,1) var(--reveal-delay,0ms)}
 .about-reveal.is-visible{opacity:1;transform:translateY(0)}
 .more-section .section-heading{margin-bottom:2.3rem}
@@ -92,4 +86,4 @@ a.about-card-value:hover{color:var(--lavender);text-decoration:underline;text-un
 @media (max-width:950px){.interest-explorer{grid-column:1/-1;grid-row:auto}.interest-tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}.interest-tabs [role="tab"]{text-align:center}}
 @media (max-width:760px){.about::before{right:0;width:min(72vw,18rem)}.about{padding-block:4.5rem}.about-heading h2{font-size:clamp(2.8rem,10vw,4rem)}.about-columns{grid-template-columns:1fr;gap:1.25rem}.about-column+ .about-column{padding:1.25rem 0 0;border-left:0;border-top:1px solid rgba(196,181,240,.12)}.about-lede{font-size:1.25rem;line-height:1.68}.personal-facts{grid-template-columns:repeat(2,minmax(0,1fr));margin-top:3rem}.about-card{min-height:168px}.beyond-layout{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.interest-explorer{grid-column:1/-1;grid-row:auto;min-height:0}.language-panel,.hobby-panel{grid-column:auto}.ambition-card{grid-template-columns:minmax(0,1fr) auto;gap:1.2rem}.ambition-copy h3{font-size:clamp(2.2rem,6vw,3.6rem)}}
 @media (max-width:520px){.about-heading h2{font-size:clamp(2.65rem,12vw,3.4rem)}.about-lede{font-size:1.13rem}.about-column p{font-size:.96rem;line-height:1.82}.personal-facts{grid-template-columns:1fr}.about-card{min-height:145px;padding:1rem;gap:.85rem}.more-section .section-heading{margin-bottom:1.5rem}.beyond-layout{grid-template-columns:minmax(0,1fr);gap:.75rem}.interest-explorer,.language-panel,.hobby-panel,.ambition-card,.assets-panel{grid-column:1}.interest-explorer{padding:1rem}.interest-tabs{display:grid;grid-template-columns:minmax(0,1fr);gap:.25rem}.interest-tabs [role="tab"]{justify-content:flex-start;width:100%;min-height:44px}.interest-list{grid-template-columns:minmax(0,1fr)}.interest-item{min-height:44px}.hobby-list{grid-template-columns:minmax(0,1fr)}.ambition-card{grid-template-columns:minmax(0,1fr);gap:1.2rem;min-height:0;padding:1.5rem 1.2rem}.ambition-copy h3{font-size:clamp(2.2rem,11vw,3.3rem)}.ambition-cta{justify-self:start}.ambition-mark{right:-1.8rem;width:12rem}.assets-panel{align-items:flex-start;flex-direction:column;padding:1rem}.assets-panel .btn{min-height:44px}}
-@media (prefers-reduced-motion:reduce){.about-reveal,.about-card,.about-card::after,.about-card-icon .i,.about-copy-button,.more-panel,.interest-tabs [role="tab"],.interest-list,.interest-item,.language-list li,.hobby-item,.ambition-arrow,.beyond-reveal{transition:none!important}.about-reveal,.beyond-reveal{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.about-reveal,.about-card,.about-card::after,.about-card-icon .i,.more-panel,.interest-tabs [role="tab"],.interest-list,.interest-item,.language-list li,.hobby-item,.ambition-arrow,.beyond-reveal{transition:none!important}.about-reveal,.beyond-reveal{opacity:1;transform:none}}
